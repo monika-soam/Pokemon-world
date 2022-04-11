@@ -5,9 +5,14 @@
   font-family: comics, sans-serif;
 }
 
+body {
+  display: grid;
+  grid-template-rows: 15% 70% 15%;
+}
+
 .header {
   width: 100%;
-  padding: 5%;
+  margin-top: 2%;
   font-size: 1.5rem;
 }
 
@@ -19,6 +24,12 @@
 ul {
   width: 88%;
   text-align: left;
+  margin-left: 45px;
+}
+
+.nav-link img {
+  width: 45px;
+  margin: 2px 10px;
 }
 
 a {
@@ -35,7 +46,6 @@ a {
 .content {
   display: grid;
   grid-template-columns: 30% 30% 30%;
-  gap: 5%;
 }
 
 .inner-content {
@@ -67,7 +77,7 @@ a {
 
 .inner-content button {
   margin: 0 auto;
-  margin-bottom: 4%;
+  margin-bottom: 3%;
   padding: 1% 2%;
   box-shadow: 3px 3px 3px black;
   border: 2px solid black;
@@ -85,8 +95,13 @@ a {
 .footer {
   width: 100%;
   border: 2px solid #422626;
-  /* position: fixed; */
   bottom: 0;
-  height: 6%;
-  /* background-color: #9b6969d1; */
+  height: 8%;
+  position: fixed;
+  left: 0;
+  bottom: 0;
+  color: black;
+  text-align: left;
+  padding-top: 1%;
+  font-size: 1.5rem;
 }
