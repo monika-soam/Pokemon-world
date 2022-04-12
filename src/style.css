@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
+
 * {
   box-sizing: border-box;
 }
@@ -14,7 +15,7 @@ body {
   margin: 0;
 }
 
-.nav-logo>a>img {
+.nav-logo > a > img {
   width: 75px;
   height: auto;
 }
@@ -49,7 +50,7 @@ body {
   width: 100%;
 }
 
-.links>li {
+.links > li {
   margin-left: 20px;
   margin-right: 20px;
 }
