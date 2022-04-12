@@ -1,5 +1,7 @@
 import { addLike, createApp, getLikes } from './modules/involvement.js';
 import './style.css';
+/* eslint-disable-next-line */
+import l2800c94450c7829717d5 from './logo.png';
 
 let myApp;
 let pageNumber = 1;

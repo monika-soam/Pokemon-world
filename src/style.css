@@ -16,8 +16,8 @@ body {
 }
 
 .nav-logo > a > img {
-  width: 75px;
-  height: auto;
+  width: 5em;
+  margin-bottom: 0.5em;
 }
 
 .nav-container {
@@ -25,14 +25,15 @@ body {
   flex-direction: row;
   justify-content: flex-start;
   width: 100%;
+  background-color: rgb(253, 223, 223, 0.5);
 }
 
 .nav-main {
   display: flex;
   flex-direction: row;
   width: 100%;
-  margin-left: 5%;
-  margin-top: 25px;
+  margin-left: 6em;
+  margin-top: 0.5em;
 }
 
 .nav-links {
@@ -48,6 +49,7 @@ body {
   flex-direction: row;
   align-items: center;
   width: 100%;
+  list-style: none;
 }
 
 .links > li {
@@ -55,11 +57,19 @@ body {
   margin-right: 20px;
 }
 
+.links a {
+  text-decoration: none;
+  color: red;
+  font-size: 1.8rem;
+  padding-left: 3em;
+  font-weight: bold;
+}
+
 .pokemons {
   display: flex;
   flex-wrap: wrap;
   justify-content: center;
-  margin: 0 auto;
+  margin: 2em auto;
   max-width: 1200px;
 }
 
@@ -141,4 +151,15 @@ body {
   background: #c0e4c0;
   border-radius: 0.8em;
   box-shadow: 0.2em 0.2em #5f925f;
+}
+
+.footer {
+  width: 100%;
+  background-color: rgb(253, 223, 223, 0.6);
+  height: 4em;
+  margin-top: 2em;
+  font-size: 1.3rem;
+  color: red;
+  padding-top: 1.2em;
+  font-weight: 600;
 }
