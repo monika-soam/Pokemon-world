@@ -29,8 +29,4 @@ const getLikes = async () => {
   return res;
 };
 
-export {
-  createApp,
-  addLike,
-  getLikes,
-};
+export { createApp, addLike, getLikes };
