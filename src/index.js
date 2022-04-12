@@ -1,7 +1,11 @@
+import { addLike, createApp, getLikes } from './modules/involvement.js';
 import './style.css';
 
+let myApp;
+let pageNumber = 1;
 const pokeContainer = document.getElementById('pokemons');
-const pokemonsNumber = 908;
+const pokemonsNumber = 15;
+const maxPokemons = 980;
 const colors = {
   fire: '#FDDFDF',
   grass: '#DEFDE0',
@@ -20,16 +24,36 @@ const colors = {
 };
 const mainTypes = Object.keys(colors);
 
-const fetchPokemons = async () => {
-  for (let i = 1; i <= pokemonsNumber; i += 1) {
+const fetchPokemons = async() => {
+  pokeContainer.innerHTML = '';
+  const start = (pageNumber * pokemonsNumber) - 14;
+  for (let i = start; i < (start + pokemonsNumber); i += 1) {
+    /* eslint-disable-next-line */
     await getPokemon(i);
+  }
+
+  getLikes().then((likes) => {
+    likes.forEach((like) => {
+      try {
+        document.getElementById(like.item_id).innerHTML = like.likes;
+      } catch (e) { /* eslint-disable-next-line */ }
+    });
+  });
+  const likeBtn = document.querySelectorAll('.like-btn');
+
+  for (let i = 0; i < likeBtn.length; i += 1) {
+    likeBtn[i].addEventListener('click', (e) => {
+      addLike(e.target.parentNode.children[0].children[0].id);
+      e.target.children[0].innerHTML = parseInt(e.target.children[0].innerHTML, 10) + 1;
+    });
   }
 };
 
-const getPokemon = async (id) => {
+const getPokemon = async(id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
+  /* eslint-disable-next-line */
   createPokemonCard(pokemon);
 };
 
@@ -54,7 +78,7 @@ function createPokemonCard(pokemon) {
     .padStart(3, '0')}</span>
             <h3 class='name'>${name}</h3>
             <button class='like-btn'>
-            <i class='fa fa-heart' aria-hidden='true'><span id='count'> 0 </span>Like</i>
+            <i class='fa fa-heart' aria-hidden='true'>&nbsp;<span id='${pokemon.id}'>0</span>&nbsp;Like</i>
             </button>
             <div class='buttons'>
                 <button class='comment' id='btn'>Leave A Comment</button>
@@ -67,19 +91,28 @@ function createPokemonCard(pokemon) {
 
   pokeContainer.appendChild(pokemonEl);
 }
-
-fetchPokemons();
-
-const likeBtn = document.querySelectorAll('.like-btn');
-const count = document.querySelector('#count');
-let clicked = false;
-
-likeBtn.addEventListener('click', () => {
-  if (!clicked) {
-    clicked = true;
-    count.TextContent += 1;
-  } else {
-    clicked = false;
-    count.TextContent -= 1;
+window.onload = () => {
+  myApp = localStorage.getItem('myApp');
+  if (myApp === undefined || myApp === null) {
+    // Add a new App using Involvement API
+    createApp().then((appID) => {
+      localStorage.setItem('myApp', appID);
+      myApp = appID;
+    });
   }
-});
+  fetchPokemons();
+
+  document.getElementById('prev').addEventListener('click', () => {
+    if (pageNumber >= 2) {
+      pageNumber -= 1;
+      fetchPokemons();
+    }
+  });
+
+  document.getElementById('next').addEventListener('click', () => {
+    if ((maxPokemons / pokemonsNumber) > pageNumber) {
+      pageNumber += 1;
+      fetchPokemons();
+    }
+  });
+};
