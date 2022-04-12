@@ -1,4 +1,4 @@
-const createApp = async () => {
+const createApp = async() => {
   const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/', {
     method: 'POST',
   });
@@ -6,7 +6,7 @@ const createApp = async () => {
   return r;
 };
 
-const addLike = async (itemID) => {
+const addLike = async(itemID) => {
   let raw = {
     item_id: itemID,
   };
@@ -20,7 +20,7 @@ const addLike = async (itemID) => {
   return res;
 };
 
-const getLikes = async () => {
+const getLikes = async() => {
   const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${localStorage.getItem('myApp')}/likes/`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
@@ -29,8 +29,4 @@ const getLikes = async () => {
   return res;
 };
 
-export {
-  createApp,
-  addLike,
-  getLikes,
-};
+export { createApp, addLike, getLikes };
