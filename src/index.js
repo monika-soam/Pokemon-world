@@ -1,12 +1,10 @@
 import { addLike, createApp, getLikes } from './modules/involvement.js';
 import './style.css';
-/* eslint-disable-next-line */
-import l2800c94450c7829717d5 from './logo.png';
 
 let myApp;
 let pageNumber = 1;
 const pokeContainer = document.getElementById('pokemons');
-const pokemonsNumber = 15;
+const pokemonsNumber = 16;
 const maxPokemons = 980;
 const colors = {
   fire: '#FDDFDF',
@@ -28,7 +26,7 @@ const mainTypes = Object.keys(colors);
 
 const fetchPokemons = async () => {
   pokeContainer.innerHTML = '';
-  const start = (pageNumber * pokemonsNumber) - 14;
+  const start = (pageNumber * pokemonsNumber) - 15;
   for (let i = start; i < (start + pokemonsNumber); i += 1) {
     /* eslint-disable-next-line */
     await getPokemon(i);
@@ -41,7 +39,7 @@ const fetchPokemons = async () => {
       } catch (e) { /* eslint-disable-next-line */ }
     });
   });
-  const likeBtn = document.querySelectorAll('.like-btn');
+  const likeBtn = document.querySelectorAll('.heartbtn');
 
   for (let i = 0; i < likeBtn.length; i += 1) {
     likeBtn[i].addEventListener('click', (e) => {
@@ -71,23 +69,61 @@ function createPokemonCard(pokemon) {
   pokemonEl.style.backgroundColor = color;
 
   const pokeInnerHTML = `
-        <div class='img-container'>
-        <img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png'' alt='${name}'>
-        </div>
-        <div class='info'>
-            <span class='number'>#${pokemon.id
-    .toString()
-    .padStart(3, '0')}</span>
-            <h3 class='name'>${name}</h3>
-            <button class='like-btn'>
-            <i class='fa fa-heart' aria-hidden='true'>&nbsp;<span id='${pokemon.id}'>0</span>&nbsp;Like</i>
-            </button>
-            <div class='buttons'>
-                <button class='comment' id='btn'>Leave A Comment</button>
-                <button class='reservation' id='btn'>Make A Reservation</button>
-            </div>
-        </div>
-    `;
+  <div class="pokebox">
+
+  <!-- This is the top part of the card -->
+  
+  <div class="pokehead">
+    <span class="blue-circle"></span>
+    <span class="red-circle"></span>
+<span class="yellow-circle"></span>
+<span class="green-circle"></span>
+</div>
+  
+<!-- This is middle section of the card -->
+  
+<div class="pokebody">
+<div class="poke-gray">
+<div class="circle-container">
+<span class="circle"></span>
+<span class="circle"></span>
+</div>
+<div class="poke-container" id="background">
+<div class="image-container">
+<img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png'' alt='${name}'>
+</div>
+</div>
+<div class="box-buttons">
+<span class="circle2"></span>
+<img src="./images/menu.png" alt="" class="burger">
+</div>
+</div>
+</div>
+  
+<!-- This is the bottom part of the card -->
+  
+<div class="pokein">
+<div class="pokename">
+${name}
+</div>
+<button type="button" class="heartbtn">
+<i class='fa fa-heart' aria-hidden='true'><span id='${pokemon.id}'></span></i>
+</button>
+</div>
+  
+<div class="pokein2">
+<div class="id">
+<span class='number'>#${pokemon.id.toString().padStart(3, '0')}</span>
+</div>
+<div class="likeCount" id="countBox">
+<span class="count"> 0 </span> Likes
+</div>
+</div>
+  
+<button type="button" class="commentBtn">Comments</button>
+
+  </div>
+  `;
 
   pokemonEl.innerHTML = pokeInnerHTML;
 
