@@ -1,5 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
+
 @font-face {
   font-family: 'Pokemon Solid';
   src: url('http://www.cufonfonts.com') format('woff');
@@ -7,7 +8,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Pokemon Solid';
+  font-family: 'Pokemon Solid', comic, sans-serif;
   font-weight: 200;
 }
 
@@ -21,7 +22,7 @@ body {
   margin: 0;
 }
 
-.nav-logo>a>img {
+.nav-logo > a > img {
   width: 5em;
   margin-bottom: 0.5em;
 }
@@ -58,7 +59,7 @@ body {
   list-style: none;
 }
 
-.links>li {
+.links > li {
   margin-left: 20px;
   margin-right: 20px;
 }
