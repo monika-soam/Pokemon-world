@@ -99,7 +99,7 @@ npm run start
 
 - GitHub: [GitHub](https://github.com/AdrianCSM)
 - Twitter: @CosminAdriannn
-- LinkedIn: [LinkedIn](linkedin.com/in/monika-soam-✓-16b59925)
+- LinkedIn: [LinkedIn](https://www.linkedin.com/in/gheorghita-cosmin-adrian-b7781122a/)
 
 
 🤝 **Contributing**
