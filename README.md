@@ -20,7 +20,7 @@ The website allow Pokemon lovers to look for the Pokemon cards by name, see all 
 Getting Started
 To get the content of this project locally you need to run this command in your terminal:
 
-[Pokemon](https://github.com/monika-soam/kanban-board)
+[Pokemon](https://https://github.com/monika-soam/Pokemon-world)
 Test For tracking linter errors locally you need to follow these steps:
 
 After cloning the project you need to run this command
@@ -104,7 +104,7 @@ npm run start
 
 Contributions, issues, and feature requests are welcome!
 
-Feel free to check the [issues page](https://github.com/monika-soam/kanban-board/issues).
+Feel free to check the [issues page](https://github.com/monika-soam/Pokemon-world/issues).
 
 ## Show your support
 
