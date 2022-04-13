@@ -1,7 +1,6 @@
 @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
-
 @font-face {
   font-family: 'Pokemon Solid';
   src: url('http://www.cufonfonts.com') format('woff');
@@ -9,7 +8,7 @@
 
 * {
   box-sizing: border-box;
-  font-family: 'Pokemon Solid', comic, sans-serif;
+  font-family: comic, sans-serif;
   font-weight: 200;
 }
 
@@ -32,7 +31,6 @@ body {
   from {
     background-position: 0 0;
   }
-
   to {
     background-position: 40% 10%;
   }
@@ -43,7 +41,7 @@ body {
   border-radius: 10px;
 }
 
-.nav-logo > a > img {
+.nav-logo>a>img {
   width: 5em;
   margin-bottom: 0.5em;
 }
@@ -53,7 +51,7 @@ body {
   flex-direction: row;
   justify-content: flex-start;
   width: 100%;
-  background-color: rgb(253, 223, 223, 0.5);
+  background-color: rgb(222, 253, 220, 0.8);
 }
 
 .nav-main {
@@ -80,14 +78,14 @@ body {
   list-style: none;
 }
 
-.links > li {
+.links>li {
   margin-left: 20px;
   margin-right: 20px;
 }
 
 .links a {
   text-decoration: none;
-  color: red;
+  color: black;
   font-size: 1.8rem;
   padding-left: 3em;
   font-weight: 100;
@@ -118,7 +116,7 @@ body {
 }
 
 .pokemon .number {
-  background-color: rgba(0, 0, 0, 0.1);
+  background-color: rgb(0, 170, 247);
   border-radius: 10px;
   font-size: 0.8em;
   padding: 5px 10px;
@@ -168,21 +166,21 @@ body {
 
 .footer {
   width: 100%;
-  background-color: rgb(253, 223, 223, 0.6);
+  background-color: rgb(222, 253, 220, 0.8);
   height: 4em;
   margin-top: 2em;
   font-size: 1.3rem;
-  color: red;
+  color: black;
   padding-top: 1.2em;
   font-weight: 100;
 }
+
 
 /* New UI */
 
 .pokedex {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
-
   display: flex;
   flex-wrap: wrap;
   margin-top: calc(var(--bs-gutter-y) * -1);
@@ -231,7 +229,6 @@ body {
   from {
     background-color: #1eb8ff;
   }
-
   to {
     background-color: #85fce8;
   }
@@ -253,7 +250,6 @@ body {
   from {
     background-color: #ff1a1a;
   }
-
   to {
     background-color: #ff9696;
   }
@@ -275,7 +271,6 @@ body {
   from {
     background-color: #fffb1a;
   }
-
   to {
     background-color: #fdf4bd;
   }
@@ -297,7 +292,6 @@ body {
   from {
     background-color: #1aff2d;
   }
-
   to {
     background-color: #a7ff96;
   }
@@ -348,7 +342,7 @@ body {
   display: flex !important;
 }
 
-.image-container > img {
+.image-container>img {
   width: 200px;
   height: auto;
 }
@@ -369,7 +363,7 @@ body {
   margin: 0.25rem !important;
 }
 
-.box-buttons > img {
+.box-buttons>img {
   width: 30px;
   height: 30px;
   margin-top: 5px;
@@ -461,7 +455,7 @@ body {
 
 .add {
   font-family: VT323, arial, helvetica, sans-serif;
-  font-size: 55px;
+  font-size: 3rem;
   color: #212529;
   margin-bottom: 0.5rem;
   margin-top: 0.5rem;
@@ -478,7 +472,7 @@ body {
 
 .form-com {
   width: 100%;
-  height: 300px;
+  height: 160px;
   border-radius: 6px;
   border: 4px solid #212529;
   font-family: VT323, arial, helvetica, sans-serif;
@@ -526,7 +520,7 @@ body {
 
 #total-comments {
   font-family: VT323, arial, helvetica, sans-serif;
-  font-size: 55px;
+  font-size: 2rem;
   color: #212529;
   margin-bottom: 0.5rem;
 }
@@ -534,4 +528,53 @@ body {
 .comments {
   color: #fff;
   border-color: #373b3e;
+}
+
+thead {
+  font-size: 1.6rem;
+}
+
+tbody {
+  font-size: 0.8rem;
+}
+
+.modal {
+  width: 35%;
+  margin: 1em auto;
+}
+
+.invisible {
+  display: none;
+}
+
+.visible {
+  display: block;
+}
+
+.overlay {
+  position: fixed;
+  display: none;
+  height: 100%;
+  top: 0;
+  left: 0;
+  right: 0;
+  bottom: 0;
+  width: 100%;
+  margin: 0;
+  background-color: rgb(222, 253, 220, 0.7);
+  z-index: 2;
+  cursor: pointer;
+  overflow-y: auto;
+}
+
+#close {
+  margin: 2em 4em;
+  font-size: 2rem;
+  font-weight: bold;
+}
+
+.close {
+  width: 100%;
+  text-align: right;
+  position: absolute;
 }

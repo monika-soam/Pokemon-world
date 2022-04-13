@@ -1,14 +1,13 @@
-import { addLike, createApp, getLikes } from './modules/involvement.js';
+import { addLike, createApp, getLikes, getComments, putComment } from './modules/involvement.js';
 import './style.css';
-import './images/pokemonpattern.png';
-import './images/logo.png';
-import './images/menu.png';
+
 
 let myApp;
 let pageNumber = 1;
 const pokeContainer = document.getElementById('pokemons');
-const pokemonsNumber = 16;
+const pokemonsNumber = 9;
 const maxPokemons = 980;
+let openedOverlayID;
 const colors = {
   fire: '#FDDFDF',
   grass: '#DEFDE0',
@@ -27,9 +26,9 @@ const colors = {
 };
 const mainTypes = Object.keys(colors);
 
-const fetchPokemons = async () => {
+const fetchPokemons = async() => {
   pokeContainer.innerHTML = '';
-  const start = (pageNumber * pokemonsNumber) - 15;
+  const start = (pageNumber * pokemonsNumber) - 8;
   for (let i = start; i < (start + pokemonsNumber); i += 1) {
     /* eslint-disable-next-line */
     await getPokemon(i);
@@ -46,19 +45,32 @@ const fetchPokemons = async () => {
 
   for (let i = 0; i < likeBtn.length; i += 1) {
     likeBtn[i].addEventListener('click', (e) => {
-      addLike(e.target.parentNode.children[0].children[0].id);
-      e.target.children[0].innerHTML = parseInt(e.target.children[0].innerHTML, 10) + 1;
+      let el = e.target.parentNode.parentNode.parentNode.children[3].children[1].children[0];
+
+      addLike(el.id);
+      document.getElementById(el.id).innerHTML = parseInt(document.getElementById(el.id).innerHTML) + 1;
+
+    });
+  }
+
+  const commentBtn = document.querySelectorAll(".commentBtn");
+  for (let i = 0; i < commentBtn.length; i += 1) {
+    commentBtn[i].addEventListener('click', (e) => {
+      let el = e.target.parentNode.children[3].children[1].children[0];
+
+      fillOverlay(el.id);
     });
   }
 };
 
-const getPokemon = async (id) => {
+const getPokemon = async(id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
   /* eslint-disable-next-line */
   createPokemonCard(pokemon);
 };
+
 
 function createPokemonCard(pokemon) {
   const pokemonEl = document.createElement('div');
@@ -93,12 +105,12 @@ function createPokemonCard(pokemon) {
 </div>
 <div class="poke-container" id="background">
 <div class="image-container">
-<img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png'' alt='${name}'>
+<img src='https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png' alt='${name}'>
 </div>
 </div>
 <div class="box-buttons">
 <span class="circle2"></span>
-<img src="./assets/menu.png" alt="" class="burger">
+<img src="https://i.imgur.com/rAT6iK5.png" alt="" class="burger">
 </div>
 </div>
 </div>
@@ -110,7 +122,7 @@ function createPokemonCard(pokemon) {
 ${name}
 </div>
 <button type="button" class="heartbtn">
-<i class='fa fa-heart' aria-hidden='true'><span id='${pokemon.id}'></span></i>
+<i class='fa fa-heart' aria-hidden='true'></i>
 </button>
 </div>
   
@@ -119,18 +131,60 @@ ${name}
 <span class='number'>#${pokemon.id.toString().padStart(3, '0')}</span>
 </div>
 <div class="likeCount" id="countBox">
-<span class="count"> 0 </span> Likes
+<span class="count" id='${pokemon.id}'> 0 </span>&nbsp; Likes
 </div>
 </div>
   
-<button type="button" class="commentBtn">Comments</button>
+<button type="button" class="commentBtn" >Comments</button>
 
   </div>
   `;
-
   pokemonEl.innerHTML = pokeInnerHTML;
-
   pokeContainer.appendChild(pokemonEl);
+}
+
+const listComments = async(id) => {
+  getComments(id).then(comments => {
+    document.getElementById("total-comments").innerHTML = "0 Dynamic Comment Count"
+
+    document.getElementById("comments_rows").innerHTML = '';
+    if (comments.length === 0) return;
+    if (comments.length > 1)
+      document.getElementById("total-comments").innerHTML = comments.length.toString() + " Dynamic Comments Count"
+    else
+
+      document.getElementById("total-comments").innerHTML = comments.length.toString() + " Dynamic Comment Count"
+    comments.forEach((comment, i) => {
+      document.getElementById('comments_rows').innerHTML += `<tr>
+                    <th>${i+1}</th>
+                    <th>${comment.username}</th>
+                    <th>${comment.comment}</th>
+                    <th>${comment.creation_date}</th>
+                  </tr>`
+    })
+  });
+}
+
+const addComment = async(id) => {
+  await putComment(id, document.getElementById('username').value, document.getElementById('comment').value)
+  document.getElementById('username').value = '';
+  document.getElementById('comment').value = '';
+  listComments(openedOverlayID);
+
+}
+const fillOverlay = async(id) => {
+  document.getElementsByClassName("overlay")[0].style.display = "block";
+
+
+  //fetch all details
+  openedOverlayID = id;
+  const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
+  const res = await fetch(url);
+  const pokemon = await res.json();
+  document.getElementById("pokemon_img").src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`;
+
+  document.getElementById("pokemon_img").alt = `${pokemon.name}`;
+  listComments(id);
 }
 window.onload = () => {
   myApp = localStorage.getItem('myApp');
@@ -155,5 +209,16 @@ window.onload = () => {
       pageNumber += 1;
       fetchPokemons();
     }
+  });
+
+  document.getElementById('addComment').addEventListener('click', () => {
+    addComment(openedOverlayID);
+  });
+
+  document.getElementById('close').addEventListener('click', () => {
+    openedOverlayID = 0;
+    document.getElementsByClassName("overlay")[0].style.display = "none";
+
+
   });
 };
