@@ -10,6 +10,9 @@ import './style.css';
 let myApp;
 let pageNumber = 1;
 const pokeContainer = document.getElementById('pokemons');
+const from = document.getElementById('from');
+const to = document.getElementById('to');
+const total = document.getElementById('total');
 const pokemonsNumber = 9;
 const maxPokemons = 980;
 let openedOverlayID;
@@ -32,12 +35,13 @@ const colors = {
 const mainTypes = Object.keys(colors);
 
 const fetchPokemons = async() => {
-  let itemCount = document.getElementById("itemCount");
+
   pokeContainer.innerHTML = '';
   const start = (pageNumber * pokemonsNumber) - 8;
-  itemCount.innerHTML = "0";
+  from.innerHTML = start.toString();
+  to.innerHTML = (start + pokemonsNumber - 1).toString();
+  total.innerHTML = maxPokemons.toString();
   for (let i = start; i < (start + pokemonsNumber); i += 1) {
-    itemCount.innerHTML = parseInt(itemCount.innerHTML) + 1;
     await getPokemon(i);
   }
 
