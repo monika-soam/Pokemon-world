@@ -1,4 +1,4 @@
-const createApp = async () => {
+const createApp = async() => {
   const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/', {
     method: 'POST',
   });
@@ -6,7 +6,7 @@ const createApp = async () => {
   return r;
 };
 
-const addLike = async (itemID) => {
+const addLike = async(itemID) => {
   let raw = {
     item_id: itemID,
   };
@@ -20,7 +20,7 @@ const addLike = async (itemID) => {
   return res;
 };
 
-const getLikes = async () => {
+const getLikes = async() => {
   const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${localStorage.getItem('myApp')}/likes/`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
@@ -29,7 +29,7 @@ const getLikes = async () => {
   return res;
 };
 
-const getComments = async (id) => {
+const getComments = async(id) => {
   try {
     const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${localStorage.getItem('myApp')}/comments?item_id=${id}`, {
       method: 'GET',
@@ -43,7 +43,7 @@ const getComments = async (id) => {
   }
 };
 
-const putComment = async (id, username, comment) => {
+const putComment = async(id, username, comment) => {
   const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/yF5zxJtwKDf1L72mEvjU/comments?item_id=${id}`;
   const raw = {
     username,
@@ -58,10 +58,19 @@ const putComment = async (id, username, comment) => {
   });
 };
 
+const fetchTotalPokemons = async() => {
+  const url = `https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0`;
+  const res = await fetch(url);
+  let maxPokemons = await res.json();
+  maxPokemons = maxPokemons.count;
+  return maxPokemons;
+}
+
 export {
   createApp,
   addLike,
   getLikes,
   getComments,
   putComment,
+  fetchTotalPokemons
 };

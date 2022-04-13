@@ -4,6 +4,7 @@ import {
   getLikes,
   getComments,
   putComment,
+  fetchTotalPokemons,
 } from './modules/involvement.js';
 import './style.css';
 
@@ -14,7 +15,7 @@ const from = document.getElementById('from');
 const to = document.getElementById('to');
 const total = document.getElementById('total');
 const pokemonsNumber = 9;
-const maxPokemons = 980;
+let maxPokemons;
 let openedOverlayID;
 const colors = {
   fire: '#FDDFDF',
@@ -34,7 +35,7 @@ const colors = {
 };
 const mainTypes = Object.keys(colors);
 
-const fetchPokemons = async () => {
+const fetchPokemons = async() => {
   pokeContainer.innerHTML = '';
   const start = (pageNumber * pokemonsNumber) - 8;
   from.innerHTML = start.toString();
@@ -73,7 +74,7 @@ const fetchPokemons = async () => {
   }
 };
 
-const getPokemon = async (id) => {
+const getPokemon = async(id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
@@ -152,7 +153,7 @@ ${name}
   pokeContainer.appendChild(pokemonEl);
 }
 
-const listComments = async (id) => {
+const listComments = async(id) => {
   getComments(id).then((comments) => {
     const totalComments = document.getElementById('total-comments');
     totalComments.innerHTML = '0  Comment Count';
@@ -170,8 +171,15 @@ const listComments = async (id) => {
     });
   });
 };
+const updateTotalPokemons = async(done) => {
+  await fetchTotalPokemons().then((max) => {
+    maxPokemons = max;
+    document.getElementById("totalPokemons").innerHTML = maxPokemons.toString();
+    done();
+  })
+}
 
-const addComment = async (id) => {
+const addComment = async(id) => {
   const userName = document.getElementById('username');
   const comment = document.getElementById('comment');
 
@@ -180,7 +188,7 @@ const addComment = async (id) => {
   comment.value = '';
   listComments(openedOverlayID);
 };
-const fillOverlay = async (id) => {
+const fillOverlay = async(id) => {
   document.getElementsByClassName('overlay')[0].style.display = 'block';
 
   // fetch all details
@@ -202,28 +210,33 @@ window.onload = () => {
       myApp = appID;
     });
   }
-  fetchPokemons();
 
-  document.getElementById('prev').addEventListener('click', () => {
-    if (pageNumber >= 2) {
-      pageNumber -= 1;
-      fetchPokemons();
-    }
-  });
+  updateTotalPokemons(() => {
+    fetchPokemons();
 
-  document.getElementById('next').addEventListener('click', () => {
-    if ((maxPokemons / pokemonsNumber) > pageNumber) {
-      pageNumber += 1;
-      fetchPokemons();
-    }
-  });
+    document.getElementById('prev').addEventListener('click', () => {
+      if (pageNumber >= 2) {
+        pageNumber -= 1;
+        fetchPokemons();
+      }
+    });
 
-  document.getElementById('addComment').addEventListener('click', () => {
-    addComment(openedOverlayID);
-  });
+    document.getElementById('next').addEventListener('click', () => {
+      if ((maxPokemons / pokemonsNumber) > pageNumber) {
+        pageNumber += 1;
+        fetchPokemons();
+      }
+    });
 
-  document.getElementById('close').addEventListener('click', () => {
-    openedOverlayID = 0;
-    document.getElementsByClassName('overlay')[0].style.display = 'none';
-  });
+    document.getElementById('addComment').addEventListener('click', () => {
+      addComment(openedOverlayID);
+    });
+
+    document.getElementById('close').addEventListener('click', () => {
+      openedOverlayID = 0;
+      document.getElementsByClassName('overlay')[0].style.display = 'none';
+    });
+  })
+
+
 };
