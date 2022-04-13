@@ -11,6 +11,8 @@ The website allow Pokemon lovers to look for the Pokemon cards by name, see all 
 
 ## LiveDemo
 [Pokemon-World](https://monika-soam.github.io/Pokemon-world/dist/)
+## Documentation Video
+[ Documentation video ](https://www.loom.com/share/127c2387f46e4d0a9dc6d2adbf8f5054)
 ## ScreenShot Demo
 ![Pokemon](./src/images/Homepage-full.png)
 ![Pokemon-overlay](./src/images/overlay.png)
