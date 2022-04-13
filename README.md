@@ -9,7 +9,8 @@ The website allow Pokemon lovers to look for the Pokemon cards by name, see all 
 - webpack to bundle JavaScript.
 - API Service
 
-
+## LiveDemo
+[Pokemon-World](https://monika-soam.github.io/Pokemon-world/dist/)
 ## ScreenShot Demo
 ![Pokemon](./src/images/Homepage-full.png)
 ![Pokemon-overlay](./src/images/overlay.png)
