@@ -1,5 +1,8 @@
 import { addLike, createApp, getLikes } from './modules/involvement.js';
 import './style.css';
+import './images/pokemonpattern.png';
+import './images/logo.png';
+import './images/menu.png';
 
 let myApp;
 let pageNumber = 1;

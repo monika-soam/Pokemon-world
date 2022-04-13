@@ -81,12 +81,8 @@ body {
 }
 
 .pokemon {
-  background-color: #eee;
-  border-radius: 20px;
-  box-shadow: 0 3px 15px rgba(100, 100, 100, 0.5);
   margin: 10px;
   padding: 20px;
-  text-align: center;
 }
 
 .pokemon .img-container {
@@ -382,4 +378,95 @@ body {
   color: white;
   margin-top: 1rem;
   cursor: pointer;
+}
+
+.comment-form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.form {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+}
+
+.add {
+  font-family: VT323, arial, helvetica, sans-serif;
+  font-size: 55px;
+  color: #212529;
+  margin-bottom: 0.5rem;
+  margin-top: 0.5rem;
+}
+
+.form-name {
+  width: 100%;
+  height: 60px;
+  border-radius: 6px;
+  border: 4px solid #212529;
+  font-family: VT323, arial, helvetica, sans-serif;
+  font-size: 30px;
+}
+
+.form-com {
+  width: 100%;
+  height: 300px;
+  border-radius: 6px;
+  border: 4px solid #212529;
+  font-family: VT323, arial, helvetica, sans-serif;
+  font-size: 30px;
+  resize: vertical;
+  display: flex;
+  justify-content: flex-start;
+  margin-top: 00.5rem;
+}
+
+.form-submit {
+  width: 100%;
+  height: 70px;
+  border-radius: 6px;
+  margin-top: 0.5rem;
+  background-color: #212529;
+  border-color: #212529;
+  opacity: 0.65;
+  font-family: VT323, arial, helvetica, sans-serif;
+  font-size: 30px;
+  color: white;
+  cursor: pointer;
+}
+
+.form-submit:hover {
+  opacity: 1;
+  transform: scale(1.05);
+  transition: all 0.4s ease-in-out;
+}
+
+.comment-section {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
+  margin-top: 1rem;
+}
+
+.comments-number {
+  font-family: VT323, arial, helvetica, sans-serif;
+  font-size: 35px;
+  color: #212529;
+  margin-bottom: 0.5rem;
+}
+
+#total-comments {
+  font-family: VT323, arial, helvetica, sans-serif;
+  font-size: 55px;
+  color: #212529;
+  margin-bottom: 0.5rem;
+}
+
+.comments {
+  color: #fff;
+  border-color: #373b3e;
 }
