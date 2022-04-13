@@ -3,14 +3,16 @@
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
 
 @font-face {
-  font-family: 'Pokemon Solid';
-  src: url('http://www.cufonfonts.com') format('woff');
+  font-family: 'Pokemon Solid Normal';
+  font-style: normal;
+  font-weight: normal;
+  src: local('Pokemon Solid Normal'), url('Pokemon Solid.woff') format('woff');
 }
 
 * {
   box-sizing: border-box;
-  font-family: comic, sans-serif;
-  font-weight: 200;
+  font-family: 'Pokemon Solid Normal', sans-serif;
+  font-weight: normal;
 }
 
 body {
@@ -19,7 +21,7 @@ body {
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: "Pokemon Solid", sans-serif;
+  font-family: "Pokemon Solid Normal", sans-serif;
   margin: 0;
   animation-duration: 20s;
   animation-name: moveBackground;
@@ -55,6 +57,7 @@ body {
 }
 
 .nav-logo > a > img {
+  padding-top: 15px;
   width: 5em;
   margin-bottom: 0.5em;
 }
@@ -64,7 +67,7 @@ body {
   flex-direction: row;
   justify-content: flex-start;
   width: 100%;
-  background-color: rgb(222, 253, 220, 0.8);
+  background-color: rgba(255, 255, 255, 1);
 }
 
 .nav-main {
@@ -131,8 +134,10 @@ body {
 .pokemon .number {
   background-color: rgb(0, 170, 247);
   border-radius: 10px;
-  font-size: 0.8em;
   padding: 5px 10px;
+  font-family: VT323, arial, helvetica, sans-serif;
+  font-size: 24px;
+  font-weight: 600;
 }
 
 .pokemon .name {
@@ -164,9 +169,9 @@ body {
   cursor: pointer;
 }
 
-#count {
-  color: #fff;
-  font-size: 1.2em;
+.count {
+  padding-left: 5px;
+  font-family: VT323, arial, helvetica, sans-serif;
 }
 
 #prev,
@@ -432,6 +437,8 @@ body {
   background-color: rgb(249, 238, 96);
   border-radius: 0 0 0 40px;
   border: 5px solid #000;
+  font-family: VT323, arial, helvetica, sans-serif;
+  font-size: 45px;
 }
 
 .commentBtn {
@@ -443,6 +450,8 @@ body {
   color: white;
   margin-top: 1rem;
   cursor: pointer;
+  font-family: VT323, arial, helvetica, sans-serif;
+  font-size: 40px;
 }
 
 .comment-form {
