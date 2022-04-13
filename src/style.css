@@ -14,13 +14,28 @@
 }
 
 body {
-  background-image: url(./images/pokemonpattern.png);
+  background-image: url('https://i.pinimg.com/originals/bb/aa/46/bbaa46915292f0c99cab4e0432bcd6f4.jpg') !important;
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-family: "Lato", sans-serif;
+  font-family: "Pokemon Solid", sans-serif;
   margin: 0;
+  animation-duration: 20s;
+  animation-name: moveBackground;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+  transition-timing-function: linear;
+}
+
+@keyframes moveBackground {
+  from {
+    background-position: 0 0;
+  }
+
+  to {
+    background-position: 40% 10%;
+  }
 }
 
 .pokemon {
@@ -206,7 +221,20 @@ body {
   border: 5px solid #000;
   margin-bottom: 1rem;
   margin-right: 1rem;
-  background-color: blue;
+  animation-duration: 0.7s;
+  animation-name: changeBackgroundColorBlue;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes changeBackgroundColorBlue {
+  from {
+    background-color: #1eb8ff;
+  }
+
+  to {
+    background-color: #85fce8;
+  }
 }
 
 .red-circle {
@@ -215,7 +243,20 @@ body {
   border-radius: 100%;
   border: 5px solid #000;
   margin-right: 0.5rem;
-  background-color: red;
+  animation-duration: 0.4s;
+  animation-name: changeBackgroundColorRed;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes changeBackgroundColorRed {
+  from {
+    background-color: #ff1a1a;
+  }
+
+  to {
+    background-color: #ff9696;
+  }
 }
 
 .yellow-circle {
@@ -224,7 +265,20 @@ body {
   border-radius: 100%;
   border: 5px solid #000;
   margin-right: 0.5rem;
-  background-color: yellow;
+  animation-duration: 0.5s;
+  animation-name: changeBackgroundColorYellow;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes changeBackgroundColorYellow {
+  from {
+    background-color: #fffb1a;
+  }
+
+  to {
+    background-color: #fdf4bd;
+  }
 }
 
 .green-circle {
@@ -233,7 +287,20 @@ body {
   border-radius: 100%;
   border: 5px solid #000;
   margin-right: 0.5rem;
-  background-color: green;
+  animation-duration: 0.9s;
+  animation-name: changeBackgroundColorGreen;
+  animation-iteration-count: infinite;
+  animation-direction: alternate;
+}
+
+@keyframes changeBackgroundColorGreen {
+  from {
+    background-color: #1aff2d;
+  }
+
+  to {
+    background-color: #a7ff96;
+  }
 }
 
 .pokebody {

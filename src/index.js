@@ -98,7 +98,7 @@ function createPokemonCard(pokemon) {
 </div>
 <div class="box-buttons">
 <span class="circle2"></span>
-<img src="./images/menu.png" alt="" class="burger">
+<img src="./assets/menu.png" alt="" class="burger">
 </div>
 </div>
 </div>
