@@ -1,4 +1,4 @@
-const createApp = async() => {
+const createApp = async () => {
   const response = await fetch('https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/', {
     method: 'POST',
   });
@@ -6,7 +6,7 @@ const createApp = async() => {
   return r;
 };
 
-const addLike = async(itemID) => {
+const addLike = async (itemID) => {
   let raw = {
     item_id: itemID,
   };
@@ -20,7 +20,7 @@ const addLike = async(itemID) => {
   return res;
 };
 
-const getLikes = async() => {
+const getLikes = async () => {
   const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${localStorage.getItem('myApp')}/likes/`, {
     method: 'GET',
     headers: { 'Content-Type': 'application/json' },
@@ -29,34 +29,39 @@ const getLikes = async() => {
   return res;
 };
 
-const getComments = async(id) => {
+const getComments = async (id) => {
   try {
     const response = await fetch(`https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/${localStorage.getItem('myApp')}/comments?item_id=${id}`, {
       method: 'GET',
       headers: { 'Content-Type': 'application/json' },
     });
     const res = await response.json();
-    if (res.error)
-      return [];
+    if (res.error) return [];
     return res;
   } catch (e) { /* eslint-disable-next-line */
     return []
   }
 };
 
-const putComment = async(id, username, comment) => {
+const putComment = async (id, username, comment) => {
   const url = `https://us-central1-involvement-api.cloudfunctions.net/capstoneApi/apps/yF5zxJtwKDf1L72mEvjU/comments?item_id=${id}`;
   const raw = {
-    username: username,
-    comment: comment,
+    username,
+    comment,
     item_id: id,
-  }
+  };
+  /* eslint-disable-next-line */
   const res = await fetch(url, {
     method: 'POST',
     body: JSON.stringify(raw),
     headers: { 'Content-Type': 'application/json' },
   });
-  let response = await res.text();
-}
+};
 
-export { createApp, addLike, getLikes, getComments, putComment };
+export {
+  createApp,
+  addLike,
+  getLikes,
+  getComments,
+  putComment,
+};

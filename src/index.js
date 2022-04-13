@@ -1,6 +1,11 @@
-import { addLike, createApp, getLikes, getComments, putComment } from './modules/involvement.js';
+import {
+  addLike,
+  createApp,
+  getLikes,
+  getComments,
+  putComment,
+} from './modules/involvement.js';
 import './style.css';
-
 
 let myApp;
 let pageNumber = 1;
@@ -26,7 +31,7 @@ const colors = {
 };
 const mainTypes = Object.keys(colors);
 
-const fetchPokemons = async() => {
+const fetchPokemons = async () => {
   pokeContainer.innerHTML = '';
   const start = (pageNumber * pokemonsNumber) - 8;
   for (let i = start; i < (start + pokemonsNumber); i += 1) {
@@ -45,32 +50,30 @@ const fetchPokemons = async() => {
 
   for (let i = 0; i < likeBtn.length; i += 1) {
     likeBtn[i].addEventListener('click', (e) => {
-      let el = e.target.parentNode.parentNode.parentNode.children[3].children[1].children[0];
-
+      const el = e.target.parentNode.parentNode.parentNode.children[3].children[1].children[0];
+      const elem = document.getElementById(el.id);
       addLike(el.id);
-      document.getElementById(el.id).innerHTML = parseInt(document.getElementById(el.id).innerHTML) + 1;
-
+      elem.innerHTML = parseInt(elem.innerHTML, 10) + 1;
     });
   }
 
-  const commentBtn = document.querySelectorAll(".commentBtn");
+  const commentBtn = document.querySelectorAll('.commentBtn');
   for (let i = 0; i < commentBtn.length; i += 1) {
     commentBtn[i].addEventListener('click', (e) => {
-      let el = e.target.parentNode.children[3].children[1].children[0];
-
+      const el = e.target.parentNode.children[3].children[1].children[0];
+      /* eslint-disable-next-line */
       fillOverlay(el.id);
     });
   }
 };
 
-const getPokemon = async(id) => {
+const getPokemon = async (id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
   /* eslint-disable-next-line */
   createPokemonCard(pokemon);
 };
-
 
 function createPokemonCard(pokemon) {
   const pokemonEl = document.createElement('div');
@@ -143,49 +146,43 @@ ${name}
   pokeContainer.appendChild(pokemonEl);
 }
 
-const listComments = async(id) => {
-  getComments(id).then(comments => {
-    document.getElementById("total-comments").innerHTML = "0 Dynamic Comment Count"
+const listComments = async (id) => {
+  getComments(id).then((comments) => {
+    document.getElementById('total-comments').innerHTML = '0 Dynamic Comment Count';
 
-    document.getElementById("comments_rows").innerHTML = '';
+    document.getElementById('comments_rows').innerHTML = '';
     if (comments.length === 0) return;
-    if (comments.length > 1)
-      document.getElementById("total-comments").innerHTML = comments.length.toString() + " Dynamic Comments Count"
-    else
-
-      document.getElementById("total-comments").innerHTML = comments.length.toString() + " Dynamic Comment Count"
+    if (comments.length > 1) { document.getElementById('total-comments').innerHTML = `${comments.length.toString()} Dynamic Comments Count`; } else { document.getElementById('total-comments').innerHTML = `${comments.length.toString()} Dynamic Comment Count`; }
     comments.forEach((comment, i) => {
       document.getElementById('comments_rows').innerHTML += `<tr>
-                    <th>${i+1}</th>
+                    <th>${i + 1}</th>
                     <th>${comment.username}</th>
                     <th>${comment.comment}</th>
                     <th>${comment.creation_date}</th>
-                  </tr>`
-    })
+                  </tr>`;
+    });
   });
-}
+};
 
-const addComment = async(id) => {
-  await putComment(id, document.getElementById('username').value, document.getElementById('comment').value)
+const addComment = async (id) => {
+  await putComment(id, document.getElementById('username').value, document.getElementById('comment').value);
   document.getElementById('username').value = '';
   document.getElementById('comment').value = '';
   listComments(openedOverlayID);
+};
+const fillOverlay = async (id) => {
+  document.getElementsByClassName('overlay')[0].style.display = 'block';
 
-}
-const fillOverlay = async(id) => {
-  document.getElementsByClassName("overlay")[0].style.display = "block";
-
-
-  //fetch all details
+  // fetch all details
   openedOverlayID = id;
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
-  document.getElementById("pokemon_img").src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`;
+  document.getElementById('pokemon_img').src = `https://raw.githubusercontent.com/PokeAPI/sprites/master/sprites/pokemon/${pokemon.id}.png`;
 
-  document.getElementById("pokemon_img").alt = `${pokemon.name}`;
+  document.getElementById('pokemon_img').alt = `${pokemon.name}`;
   listComments(id);
-}
+};
 window.onload = () => {
   myApp = localStorage.getItem('myApp');
   if (myApp === undefined || myApp === null) {
@@ -217,8 +214,6 @@ window.onload = () => {
 
   document.getElementById('close').addEventListener('click', () => {
     openedOverlayID = 0;
-    document.getElementsByClassName("overlay")[0].style.display = "none";
-
-
+    document.getElementsByClassName('overlay')[0].style.display = 'none';
   });
 };

@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 @font-face {
   font-family: 'Pokemon Solid';
   src: url('http://www.cufonfonts.com') format('woff');
@@ -31,9 +32,21 @@ body {
   from {
     background-position: 0 0;
   }
+
   to {
     background-position: 40% 10%;
   }
+}
+
+.image-container img {
+  width: 200px;
+  height: auto;
+}
+
+.box-buttons img {
+  width: 30px;
+  height: 30px;
+  margin-top: 5px;
 }
 
 .pokemon {
@@ -41,7 +54,7 @@ body {
   border-radius: 10px;
 }
 
-.nav-logo>a>img {
+.nav-logo > a > img {
   width: 5em;
   margin-bottom: 0.5em;
 }
@@ -78,7 +91,7 @@ body {
   list-style: none;
 }
 
-.links>li {
+.links > li {
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -181,6 +194,7 @@ body {
 .pokedex {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
+
   display: flex;
   flex-wrap: wrap;
   margin-top: calc(var(--bs-gutter-y) * -1);
@@ -195,7 +209,7 @@ body {
   border-radius: 10px;
   box-shadow: 0 0 10px 0 rgb(0 0 0 / 50%);
   padding: 20px;
-  margin: 0px;
+  margin: 0;
   border: 5px solid #000;
   position: relative;
   display: flex;
@@ -229,6 +243,7 @@ body {
   from {
     background-color: #1eb8ff;
   }
+
   to {
     background-color: #85fce8;
   }
@@ -250,6 +265,7 @@ body {
   from {
     background-color: #ff1a1a;
   }
+
   to {
     background-color: #ff9696;
   }
@@ -271,6 +287,7 @@ body {
   from {
     background-color: #fffb1a;
   }
+
   to {
     background-color: #fdf4bd;
   }
@@ -292,6 +309,7 @@ body {
   from {
     background-color: #1aff2d;
   }
+
   to {
     background-color: #a7ff96;
   }
@@ -342,11 +360,6 @@ body {
   display: flex !important;
 }
 
-.image-container>img {
-  width: 200px;
-  height: auto;
-}
-
 .box-buttons {
   display: flex !important;
   justify-content: space-between !important;
@@ -361,12 +374,6 @@ body {
   border: 5px solid #000;
   background-color: red;
   margin: 0.25rem !important;
-}
-
-.box-buttons>img {
-  width: 30px;
-  height: 30px;
-  margin-top: 5px;
 }
 
 .pokein {
