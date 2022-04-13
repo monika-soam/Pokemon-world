@@ -34,7 +34,7 @@ const colors = {
 };
 const mainTypes = Object.keys(colors);
 
-const fetchPokemons = async () => {
+const fetchPokemons = async() => {
   pokeContainer.innerHTML = '';
   const start = (pageNumber * pokemonsNumber) - 8;
   from.innerHTML = start.toString();
@@ -73,7 +73,7 @@ const fetchPokemons = async () => {
   }
 };
 
-const getPokemon = async (id) => {
+const getPokemon = async(id) => {
   const url = `https://pokeapi.co/api/v2/pokemon/${id}`;
   const res = await fetch(url);
   const pokemon = await res.json();
@@ -152,14 +152,14 @@ ${name}
   pokeContainer.appendChild(pokemonEl);
 }
 
-const listComments = async (id) => {
+const listComments = async(id) => {
   getComments(id).then((comments) => {
     const totalComments = document.getElementById('total-comments');
-    totalComments.innerHTML = '0 Dynamic Comment Count';
+    totalComments.innerHTML = '0  Comment Count';
 
     document.getElementById('comments_rows').innerHTML = '';
     if (comments.length === 0) return;
-    if (comments.length > 1) { totalComments.innerHTML = `${comments.length.toString()} Dynamic Comments Count`; } else { totalComments.innerHTML = `${comments.length.toString()} Dynamic Comment Count`; }
+    if (comments.length > 1) { totalComments.innerHTML = `${comments.length.toString()}  Comments Count`; } else { totalComments.innerHTML = `${comments.length.toString()} Comment Count`; }
     comments.forEach((comment, i) => {
       document.getElementById('comments_rows').innerHTML += `<tr>
                     <th>${i + 1}</th>
@@ -171,7 +171,7 @@ const listComments = async (id) => {
   });
 };
 
-const addComment = async (id) => {
+const addComment = async(id) => {
   const userName = document.getElementById('username');
   const comment = document.getElementById('comment');
 
@@ -180,7 +180,7 @@ const addComment = async (id) => {
   comment.value = '';
   listComments(openedOverlayID);
 };
-const fillOverlay = async (id) => {
+const fillOverlay = async(id) => {
   document.getElementsByClassName('overlay')[0].style.display = 'block';
 
   // fetch all details
