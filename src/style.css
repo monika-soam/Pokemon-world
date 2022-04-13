@@ -1,6 +1,7 @@
 @import url("https://fonts.googleapis.com/css?family=Muli&display=swap");
 @import url("https://fonts.googleapis.com/css?family=Lato:300,400&display=swap");
 @import url('https://fonts.googleapis.com/css2?family=VT323&display=swap');
+
 @font-face {
   font-family: 'Pokemon Solid';
   src: url('http://www.cufonfonts.com') format('woff');
@@ -31,6 +32,7 @@ body {
   from {
     background-position: 0 0;
   }
+
   to {
     background-position: 40% 10%;
   }
@@ -52,7 +54,7 @@ body {
   border-radius: 10px;
 }
 
-.nav-logo>a>img {
+.nav-logo > a > img {
   width: 5em;
   margin-bottom: 0.5em;
 }
@@ -89,7 +91,7 @@ body {
   list-style: none;
 }
 
-.links>li {
+.links > li {
   margin-left: 20px;
   margin-right: 20px;
 }
@@ -192,6 +194,7 @@ body {
 .pokedex {
   --bs-gutter-x: 1.5rem;
   --bs-gutter-y: 0;
+
   display: flex;
   flex-wrap: wrap;
   margin-top: calc(var(--bs-gutter-y) * -1);
@@ -213,6 +216,7 @@ body {
   flex-direction: column;
   min-width: 0;
   word-wrap: break-word;
+
   /* diable-linters-next-line */
   -webkit-background-clip: border-box;
 }
@@ -241,6 +245,7 @@ body {
   from {
     background-color: #1eb8ff;
   }
+
   to {
     background-color: #85fce8;
   }
@@ -262,6 +267,7 @@ body {
   from {
     background-color: #ff1a1a;
   }
+
   to {
     background-color: #ff9696;
   }
@@ -283,6 +289,7 @@ body {
   from {
     background-color: #fffb1a;
   }
+
   to {
     background-color: #fdf4bd;
   }
@@ -304,6 +311,7 @@ body {
   from {
     background-color: #1aff2d;
   }
+
   to {
     background-color: #a7ff96;
   }
