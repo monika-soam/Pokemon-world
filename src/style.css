@@ -273,9 +273,7 @@ body {
 .image-container {
   width: 180px;
   height: 180px;
-
-  /* background-color: #7ecc98; */
-  background-color: transparent;
+  background-color: #7ecc98;
   border-radius: 0;
   border: 5px solid #000;
   align-items: center !important;
