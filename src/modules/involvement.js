@@ -58,10 +58,19 @@ const putComment = async (id, username, comment) => {
   });
 };
 
+const fetchTotalPokemons = async () => {
+  const url = 'https://pokeapi.co/api/v2/pokemon?limit=100000&offset=0';
+  const res = await fetch(url);
+  let maxPokemons = await res.json();
+  maxPokemons = maxPokemons.count;
+  return maxPokemons;
+};
+
 export {
   createApp,
   addLike,
   getLikes,
   getComments,
   putComment,
+  fetchTotalPokemons,
 };
